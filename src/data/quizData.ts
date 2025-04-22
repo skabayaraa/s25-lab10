@@ -1,25 +1,20 @@
-import QuizQuestion from "../core/QuizQuestion";
+import QuizQuestion from '../core/QuizQuestion';
 
 const quizData: QuizQuestion[] = [
   {
-    question: "What describes a group of objects that are treated the same way as a single instance of the same type of object?",
-    options: ["Composite", "Strategy", "Facade", "Decorator"],
-    correctAnswer: "Composite",
+    question: 'What is the capital of France?',
+    options: ['London', 'Berlin', 'Paris', 'Madrid'],
+    correctAnswer: 'Paris',
   },
   {
-    question: "What add behavior to an individual object, dynamically, without affecting the behavior of other objects from the same class?",
-    options: ["Adapter", "Decorator", "Facade", "Strategy"],
-    correctAnswer: "Decorator",
+    question: 'Which planet is known as the Red Planet?',
+    options: ['Earth', 'Mars', 'Jupiter', 'Saturn'],
+    correctAnswer: 'Mars',
   },
   {
-    question: "Which pattern enables selecting an algorithm at runtime by providing a corresponding object implementing the algorithm?",
-    options: ["Adapter", "Iterator", "Strategy", "Composite"],
-    correctAnswer: "Strategy",
-  },
-  {
-    question: "Which of the following traverse a container and access the container's elements without knowing the internals of the container?",
-    options: ["Strategy", "Adapter", "Composite", "Iterator"],
-    correctAnswer: "Iterator",
+    question: 'What is the largest ocean on Earth?',
+    options: ['Atlantic Ocean', 'Indian Ocean', 'Arctic Ocean', 'Pacific Ocean'],
+    correctAnswer: 'Pacific Ocean',
   },
 ];
 
