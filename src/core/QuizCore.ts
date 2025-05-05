@@ -1,46 +1,48 @@
-import quizData from '../data/quizData';
-import QuizQuestion from './QuizQuestion';
+export interface Question {
+  text: string;
+  options: string[];
+  correctAnswerIndex: number;
+  selectedAnswerIndex?: number;
+}
 
-class QuizCore {
-  private questions: QuizQuestion[];
+export class QuizCore {
+  private questions: Question[];
   private currentQuestionIndex: number;
-  private score: number;
 
-  constructor() {
-    this.questions = quizData;
+  constructor(questions: Question[]) {
+    this.questions = questions;
     this.currentQuestionIndex = 0;
-    this.score = 0;
   }
 
-  public getCurrentQuestion(): QuizQuestion | null {
-    if (this.currentQuestionIndex >= 0 && this.currentQuestionIndex < this.questions.length) {
-      return this.questions[this.currentQuestionIndex];
+  getCurrentQuestion(): Question {
+    return this.questions[this.currentQuestionIndex];
+  }
+
+  selectAnswer(index: number) {
+    this.questions[this.currentQuestionIndex].selectedAnswerIndex = index;
+  }
+
+  getSelectedAnswer(): number | undefined {
+    return this.questions[this.currentQuestionIndex].selectedAnswerIndex;
+  }
+
+  nextQuestion() {
+    if (this.hasNextQuestion()) {
+      this.currentQuestionIndex++;
     }
-    return null;
   }
 
-  public nextQuestion(): void {
-    this.currentQuestionIndex++;
-  }
-
-  public hasNextQuestion(): boolean {
+  hasNextQuestion(): boolean {
     return this.currentQuestionIndex < this.questions.length - 1;
   }
 
-  public answerQuestion(answer: string): void {
-    const currentQuestion = this.getCurrentQuestion();
-    if (currentQuestion && answer === currentQuestion.correctAnswer) {
-      this.score++;
-    }
+  getScore(): number {
+    return this.questions.filter(
+      q => q.selectedAnswerIndex === q.correctAnswerIndex
+    ).length;
   }
 
-  public getScore(): number {
-    return this.score;
-  }
-
-  public getTotalQuestions(): number {
+  getTotalQuestions(): number {
     return this.questions.length;
   }
 }
-
-export default QuizCore;
